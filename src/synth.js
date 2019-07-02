@@ -10,6 +10,8 @@ export default class Synth {
     this.handleKeyUp = this.handleKeyUp.bind(this);
     this.play = this.play.bind(this);
     this.oscillators = {};
+    // gainControls = document.getElementsByClassName('gain-slider')
+    // gainControls.addEventListener('change', e => this.handleGainChange(e))
   }
 
   handleKeyDown(e) {
