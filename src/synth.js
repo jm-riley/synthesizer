@@ -30,6 +30,7 @@ export default class Synth {
     const key = e.which.toString();
     // console.log(keymappings);
     if (keymappings[key] && !this.oscillators[key]) {
+      document.getElementById(key).classList.add('pressed');
       console.log(key);
       this.play(key);
     }
@@ -39,6 +40,7 @@ export default class Synth {
     const key = e.which.toString();
     console.log(key);
     if (keymappings[key]) {
+      document.getElementById(key).classList.remove('pressed');
       this.oscillators[key].forEach(osc => {
         osc.osc.stop();
       });

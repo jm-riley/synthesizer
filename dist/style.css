@@ -1,0 +1,21 @@
+.keyboard {
+  display: flex;
+}
+
+.white-key {
+  height: 100px;
+  width: 33px;
+  text-align: center;
+  border: 1px solid rgb(196, 196, 196);
+}
+
+.black-key {
+  height: 70px;
+  width: 20px;
+  color: white;
+  background-color: black;
+}
+
+.pressed {
+  background-color: grey;
+}
