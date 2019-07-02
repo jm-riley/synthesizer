@@ -4,10 +4,15 @@ import { keymappings } from './keymappings';
 
 export default class Synth {
   constructor() {
-    window.addEventListener('keydown', e => this.handleKeyDown(e));
-    window.addEventListener('keyup', e => this.handleKeyUp(e));
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleKeyUp = this.handleKeyUp.bind(this);
+    window.addEventListener('keydown', e => this.handleDown(e));
+    window.addEventListener('keyup', e => this.handleUp(e));
+    const keyboardKeys = document.getElementsByClassName('keys');
+    Array.from(keyboardKeys).forEach(key => {
+      key.addEventListener('mousedown', e => this.handleDown(e));
+      key.addEventListener('mouseup', e => this.handleUp(e));
+    });
+    this.handleDown = this.handleDown.bind(this);
+    this.handleUp = this.handleUp.bind(this);
     this.play = this.play.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.oscillators = {};
@@ -26,8 +31,9 @@ export default class Synth {
     this.filter.frequency.setValueAtTime(e.target.value, context.currentTime);
   }
 
-  handleKeyDown(e) {
-    const key = e.which.toString();
+  handleDown(e) {
+    console.log(e);
+    const key = e.type === 'keydown' ? e.which.toString() : e.target.id;
     // console.log(keymappings);
     if (keymappings[key] && !this.oscillators[key]) {
       document.getElementById(key).classList.add('pressed');
@@ -36,8 +42,9 @@ export default class Synth {
     }
   }
 
-  handleKeyUp(e) {
-    const key = e.which.toString();
+  handleUp(e) {
+    // const key = e.which.toString();
+    const key = e.type === 'keyup' ? e.which.toString() : e.target.id;
     console.log(key);
     if (keymappings[key]) {
       document.getElementById(key).classList.remove('pressed');
