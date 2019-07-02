@@ -22,4 +22,4 @@
 ## 7-2
 
 - Make a basic project skeleton, and decide how to divide functionality into seperate files
-- Have a canvas element rendered on the page with a basic grid
+- Initialize the oscillators to be used in the project and have a simple interface working to trigger them 
