@@ -39,7 +39,6 @@ export default class Synth {
     const key = e.which.toString();
     console.log(key);
     if (keymappings[key]) {
-      // this.oscillators[key].forEach(osc => osc.osc.stop());
       this.oscillators[key].forEach(osc => {
         osc.osc.stop();
       });
@@ -52,12 +51,11 @@ export default class Synth {
     const osc1 = new Oscillator(freq, 'sine');
     const osc2 = new Oscillator(freq, 'sawtooth');
     const osc3 = new Oscillator(freq, 'square');
-    osc1.gain.connect(this.gain);
-    osc2.gain.connect(this.gain);
-    osc3.gain.connect(this.gain);
-    osc1.osc.start();
-    osc2.osc.start();
-    osc3.osc.start();
-    this.oscillators[key] = [osc1, osc2, osc3];
+    const oscillators = [osc1, osc2, osc3];
+    oscillators.forEach(osc => {
+      osc.gain.connect(this.gain);
+      osc.osc.start();
+    });
+    this.oscillators[key] = oscillators;
   }
 }
