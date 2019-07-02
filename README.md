@@ -14,9 +14,12 @@
 - Basic control over the amplitude envelope (attack, decay, sustain)
 - Asjustable filter to cutoff high or low end frequencies
 
+![alt text](https://raw.githubusercontent.com/jm-riley/synthesizer/master/dist/outline.png)
+
+
 # Development Timeline
 
 ## 7-2
 
 - Make a basic project skeleton, and decide how to divide functionality into seperate files
-- Have a canvas element rendered on the page with a basic grid
+- Initialize the oscillators to be used in the project and have a simple interface working to trigger them 
