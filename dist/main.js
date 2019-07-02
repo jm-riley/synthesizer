@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/context.js":
+/*!************************!*\
+  !*** ./src/context.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nconst AudioContext = window.AudioContext || window.webkitAudioContext;\nconst context = new AudioContext();\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (context);\n\n\n//# sourceURL=webpack:///./src/context.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -94,7 +106,31 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _synth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./synth */ \"./src/synth.js\");\n\n\ndocument.addEventListener('DOMContentLoaded', () => {\n  const canvas = document.getElementById('canvas');\n  canvas.width = 600;\n  canvas.height = 600;\n  const ctx = canvas.getContext('2d');\n  ctx.fillStyle = 'rgb(100,100,100)';\n  ctx.fillRect(0, 0, 600, 600);\n  const synth = new _synth__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n  document.querySelector('button').addEventListener('click', function() {\n    synth.audioCtx.resume();\n  });\n  synth.playNote();\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _oscillator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./oscillator */ \"./src/oscillator.js\");\n/* harmony import */ var _synth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./synth */ \"./src/synth.js\");\n\n\n\ndocument.addEventListener('DOMContentLoaded', () => {\n  // document.querySelector('button').addEventListener('click', function() {\n  //   const osc1 = new Oscillator(440, 'sine');\n  //   // const osc2 = new Oscillator(440, 'square');\n  // });\n  new _synth__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/keymappings.js":
+/*!****************************!*\
+  !*** ./src/keymappings.js ***!
+  \****************************/
+/*! exports provided: keymappings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"keymappings\", function() { return keymappings; });\nconst keymappings = {\n  '65': 130.8128, //c3\n  '87': 138.5913, //c#3\n  '83': 146.8324, //d3\n  '69': 155.5635, //d#3\n  '68': 164.8128, //e3\n  '70': 174.6141, //f3\n  '84': 184.9972, //f#3\n  '71': 195.9977, //g3\n  '89': 207.6523, //g#3\n  '72': 220.0, //a3,\n  '85': 233.0819, //a#3\n  '74': 246.9417, // b3\n  '75': 261.6256 //c4\n};\n\n\n//# sourceURL=webpack:///./src/keymappings.js?");
+
+/***/ }),
+
+/***/ "./src/oscillator.js":
+/*!***************************!*\
+  !*** ./src/oscillator.js ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Oscillator; });\n/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./context */ \"./src/context.js\");\n\n\nclass Oscillator {\n  constructor(freq, type) {\n    this.osc = _context__WEBPACK_IMPORTED_MODULE_0__[\"default\"].createOscillator();\n    this.osc.type = type;\n    this.gain = _context__WEBPACK_IMPORTED_MODULE_0__[\"default\"].createGain();\n    this.osc.frequency.value = freq;\n    this.osc.connect(this.gain);\n    this.gain.connect(_context__WEBPACK_IMPORTED_MODULE_0__[\"default\"].destination);\n    // this.osc.start();\n    // this.osc.stop(context.currentTime + 1);\n  }\n}\n\n\n//# sourceURL=webpack:///./src/oscillator.js?");
 
 /***/ }),
 
@@ -106,7 +142,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _syn
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Synth; });\nclass Synth {\n  constructor() {\n    this.AudioContext = window.AudioContext || window.webkitAudioContext;\n    this.audioCtx = new AudioContext();\n    this.playNote = this.playNote.bind(this);\n  }\n\n  playNote() {\n    let osc = this.audioCtx.createOscillator('triangle');\n    osc.frequency.value = 340;\n    osc.connect(this.audioCtx.destination);\n    osc.start();\n    osc.stop(this.audioCtx.currentTime + 3);\n  }\n}\n\n\n//# sourceURL=webpack:///./src/synth.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Synth; });\n/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./context */ \"./src/context.js\");\n/* harmony import */ var _oscillator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./oscillator */ \"./src/oscillator.js\");\n/* harmony import */ var _keymappings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./keymappings */ \"./src/keymappings.js\");\n\n\n\n\nclass Synth {\n  constructor() {\n    window.addEventListener('keydown', e => this.handleKeyDown(e));\n    window.addEventListener('keyup', e => this.handleKeyUp(e));\n    this.handleKeyDown = this.handleKeyDown.bind(this);\n    this.handleKeyUp = this.handleKeyUp.bind(this);\n    this.play = this.play.bind(this);\n    this.oscillators = {};\n  }\n\n  handleKeyDown(e) {\n    const key = e.which.toString();\n    // console.log(keymappings);\n    if (_keymappings__WEBPACK_IMPORTED_MODULE_2__[\"keymappings\"][key] && !this.oscillators[key]) {\n      console.log(key);\n      this.play(key);\n    }\n  }\n\n  handleKeyUp(e) {\n    const key = e.which.toString();\n    console.log(key);\n    if (_keymappings__WEBPACK_IMPORTED_MODULE_2__[\"keymappings\"][key]) {\n      this.oscillators[key].forEach(osc => osc.osc.stop());\n      delete this.oscillators[key];\n    }\n  }\n\n  play(key) {\n    const freq = _keymappings__WEBPACK_IMPORTED_MODULE_2__[\"keymappings\"][key];\n    const osc1 = new _oscillator__WEBPACK_IMPORTED_MODULE_1__[\"default\"](freq, 'sine');\n    const osc2 = new _oscillator__WEBPACK_IMPORTED_MODULE_1__[\"default\"](freq, 'sawtooth');\n    osc1.osc.start();\n    osc2.osc.start();\n    this.oscillators[key] = [osc1, osc2];\n  }\n}\n\n\n//# sourceURL=webpack:///./src/synth.js?");
 
 /***/ })
 
