@@ -7,13 +7,14 @@ export default class Oscillator {
     this.gain = context.createGain();
     this.osc.frequency.value = freq;
     this.osc.connect(this.gain);
-    this.gain.connect(context.destination);
+    // this.gain.connect(context.destination);
     const gainControl = document.getElementById(`${type}-gain`);
-    this.gain.gain.value = gainControl.value;
+    this.gain.gain.setValueAtTime(gainControl.value, context.currentTime);
     gainControl.addEventListener('change', e => this.handleGainChange(e));
   }
 
   handleGainChange(e) {
-    this.gain.gain.value = e.target.value;
+    // this.gain.gain.value = e.target.value;
+    this.gain.gain.setValueAtTime(e.target.value, context.currentTime);
   }
 }
