@@ -1,5 +1,6 @@
 import context from './context';
 import Oscillator from './oscillator';
+import AmpEnvelope from './amp_envelope';
 import { keymappings } from './keymappings';
 
 export default class Synth {
@@ -22,8 +23,8 @@ export default class Synth {
     this.gain.gain.setValueAtTime(0, context.currentTime);
 
     this.filter.connect(context.destination);
-    this.attackControl = document.getElementById('attack');
-    this.releaseControl = document.getElementById('release');
+    // this.attackControl = document.getElementById('attack');
+    // this.releaseControl = document.getElementById('release');
     const filterControl = document.getElementById('lpf');
 
     // this.gain.linearRampToValueAtTime(0, context.currentTime + this.attackTime + this.releaseTime);
@@ -43,16 +44,16 @@ export default class Synth {
   handleDown(e) {
     const key = e.type === 'keydown' ? e.which.toString() : e.target.id;
     // console.log(keymappings);
-    const attackTime = parseFloat(this.attackControl.value);
+    // const attackTime = parseFloat(this.attackControl.value);
     if (keymappings[key] && !this.oscillators[key]) {
-      this.gain.gain.cancelScheduledValues(context.currentTime);
-      this.gain.gain.setValueAtTime(0, context.currentTime);
+      // this.gain.gain.cancelScheduledValues(context.currentTime);
+      // this.gain.gain.setValueAtTime(0, context.currentTime);
       document.getElementById(key).classList.add('pressed');
       this.play(key);
-      this.gain.gain.linearRampToValueAtTime(
-        1,
-        context.currentTime + attackTime
-      );
+      // this.gain.gain.linearRampToValueAtTime(
+      //   1,
+      //   context.currentTime + attackTime
+      // );
     }
   }
 
@@ -61,13 +62,14 @@ export default class Synth {
     const key = e.type === 'keyup' ? e.which.toString() : e.target.id;
     if (keymappings[key]) {
       document.getElementById(key).classList.remove('pressed');
-      const releaseTime = parseFloat(this.releaseControl.value);
-      this.gain.gain.linearRampToValueAtTime(
-        0,
-        context.currentTime + releaseTime
-      );
+      // const releaseTime = parseFloat(this.releaseControl.value);
+      // this.gain.gain.linearRampToValueAtTime(
+      //   0,
+      //   context.currentTime + releaseTime
+      // );
       this.oscillators[key].forEach(osc => {
-        osc.osc.stop(context.currentTime + releaseTime);
+        osc.ampEnvelope.rampDown();
+        osc.osc.stop(context.currentTime + osc.ampEnvelope.releaseTime);
       });
       delete this.oscillators[key];
     }
@@ -75,16 +77,17 @@ export default class Synth {
 
   play(key) {
     const freq = keymappings[key];
-    const osc1 = new Oscillator(freq, 'sine');
-    const osc2 = new Oscillator(freq, 'sawtooth');
-    const osc3 = new Oscillator(freq, 'square');
+    const ampEnvelope = new AmpEnvelope();
+    ampEnvelope.gain.connect(this.filter);
+    const osc1 = new Oscillator(freq, 'sine', ampEnvelope);
+    const osc2 = new Oscillator(freq, 'sawtooth', ampEnvelope);
+    const osc3 = new Oscillator(freq, 'square', ampEnvelope);
     const oscillators = [osc1, osc2, osc3];
     // const attackTime = parseFloat(this.attackControl.value);
     // this.gain.gain.cancelScheduledValues(context.currentTime);
     // this.gain.gain.setValueAtTime(0, context.currentTime);
-
+    // ampEnvelope.gain.connect(this.gain);
     oscillators.forEach(osc => {
-      osc.gain.connect(this.gain);
       osc.osc.start();
     });
     // this.gain.gain.setValueAtTime(0, context.currentTime);
