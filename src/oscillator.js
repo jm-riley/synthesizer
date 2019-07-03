@@ -10,7 +10,7 @@ export default class Oscillator {
     // this.gain.connect(context.destination);
     const gainControl = document.getElementById(`${type}-gain`);
     this.gain.gain.setValueAtTime(gainControl.value, context.currentTime);
-    gainControl.addEventListener('change', e => this.handleGainChange(e));
+    gainControl.addEventListener('input', e => this.handleGainChange(e));
   }
 
   handleGainChange(e) {

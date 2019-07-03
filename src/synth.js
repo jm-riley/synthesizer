@@ -20,9 +20,12 @@ export default class Synth {
     this.gain = context.createGain();
     this.gain.connect(this.filter);
     this.filter.connect(context.destination);
-    document
-      .getElementById('lpf')
-      .addEventListener('change', e => this.handleFilterChange(e));
+    const filterControl = document.getElementById('lpf');
+    this.filter.frequency.setValueAtTime(
+      filterControl.value,
+      context.currentTime
+    );
+    filterControl.addEventListener('input', e => this.handleFilterChange(e));
     // gainControls = document.getElementsByClassName('gain-slider')
     // gainControls.addEventListener('change', e => this.handleGainChange(e))
   }
@@ -37,7 +40,6 @@ export default class Synth {
     // console.log(keymappings);
     if (keymappings[key] && !this.oscillators[key]) {
       document.getElementById(key).classList.add('pressed');
-      console.log(key);
       this.play(key);
     }
   }
@@ -45,7 +47,6 @@ export default class Synth {
   handleUp(e) {
     // const key = e.which.toString();
     const key = e.type === 'keyup' ? e.which.toString() : e.target.id;
-    console.log(key);
     if (keymappings[key]) {
       document.getElementById(key).classList.remove('pressed');
       this.oscillators[key].forEach(osc => {
