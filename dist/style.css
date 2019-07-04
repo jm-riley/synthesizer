@@ -5,18 +5,19 @@ body {
 
 .keyboard {
   display: flex;
+  justify-content: center;
 }
 
 .white-key {
-  height: 100px;
-  width: 33px;
+  height: 200px;
+  width: 66px;
   text-align: center;
   border: 1px solid rgb(196, 196, 196);
 }
 
 .black-key {
-  height: 70px;
-  width: 20px;
+  height: 140px;
+  width: 40px;
   color: white;
   background-color: black;
 }
@@ -35,10 +36,27 @@ body {
   align-items: center;
   justify-content: space-between;
   text-align: center;
+  border: 1px solid grey;
+}
+
+.waveform-controls,
+.synth-panel-right {
+  /* display: flex; */
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .waveform-controls {
-  /* display: flex; */
+  border-right: 1px solid rgb(214, 214, 214);
+}
+
+.synth-panel-right {
+  border-left: 1px solid rgb(214, 214, 214);
 }
 
 .waveform-controls img {
@@ -69,19 +87,30 @@ body {
   padding: 20px; */
   display: flex;
   width: 350px;
+  padding-right: 40px;
   /* height: 120px; */
+}
+
+.filter-controls,
+.envelope-controls {
+  padding: 20px;
 }
 
 .envelope-control,
 .filter-control {
   padding: 10px;
   display: flex;
+  width: 300px;
   align-items: center;
+  text-align: left;
 }
 
-.envelope-control,
 .filter-control span {
-  width: 100px;
+  width: 80px;
+}
+
+.envelope-control span {
+  width: 80px;
 }
 
 input[type='range'] {

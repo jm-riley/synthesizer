@@ -2,6 +2,7 @@ import context from './context';
 import Oscillator from './oscillator';
 import AmpEnvelope from './amp_envelope';
 import { keymappings } from './keymappings';
+import Oscilloscope from './oscilloscope';
 
 export default class Synth {
   constructor() {
@@ -21,6 +22,8 @@ export default class Synth {
     this.gain = context.createGain();
     this.gain.connect(this.filter);
     this.gain.gain.setValueAtTime(0, context.currentTime);
+    this.oscilloscope = new Oscilloscope();
+    this.filter.connect(this.oscilloscope.analyser);
 
     this.filter.connect(context.destination);
     // this.attackControl = document.getElementById('attack');

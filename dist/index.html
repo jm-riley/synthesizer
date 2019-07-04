@@ -16,7 +16,7 @@
     <div class="synth-container">
       <div class="synth-controls">
         <div class="waveform-controls">
-          <div class="control-section-title">waveform gain</div>
+          <div class="control-section-title">oscillators</div>
           <div class="sine-control">
             <img src="./sine.png" />
             <input
@@ -51,27 +51,31 @@
             />
           </div>
         </div>
-        <div class="filter-controls">
-          <div class="control-section-title">lowpass filter</div>
-          <div class="filter-control">
-            <span>cutoff</span>
-            <input id="lpf" type="range" min="20" max="8000" step="0.1" />
-          </div>
+        <div class="oscilloscope-contaier">
+          <canvas id="oscilloscope"></canvas>
         </div>
-        <div class="envelope-controls">
-          <div class="control-section-title">amplitude envelope</div>
-          <div class="envelope-control">
-            <span>attack</span>
-            <input id="attack" type="range" min="0" max="1" step="0.1" />
+        <div class="synth-panel-right">
+          <div class="filter-controls">
+            <div class="control-section-title">lowpass filter</div>
+            <div class="filter-control">
+              <span>cutoff</span>
+              <input id="lpf" type="range" min="20" max="8000" step="0.1" />
+            </div>
           </div>
-          <div class="envelope-control">
-            <span>release</span>
-            <input id="release" type="range" min="0" max="1" step="0.1" />
+          <div class="envelope-controls">
+            <div class="control-section-title">amplitude envelope</div>
+            <div class="envelope-control">
+              <span>attack</span>
+              <input id="attack" type="range" min="0" max="1" step="0.1" />
+            </div>
+            <div class="envelope-control">
+              <span>release</span>
+              <input id="release" type="range" min="0" max="1" step="0.1" />
+            </div>
           </div>
         </div>
       </div>
-      <br />
-      <br />
+
       <div class="keyboard">
         <div class="keys white-key" id="65">C</div>
         <div class="keys black-key" id="87">C#</div>
