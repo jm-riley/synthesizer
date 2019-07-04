@@ -14,11 +14,11 @@ export default class Oscilloscope {
   updateWaveform() {
     // console.log(this.waveform);
     requestAnimationFrame(this.updateWaveform);
+    // setTimeout(this.updateWaveform, 100);
     this.analyser.getFloatTimeDomainData(this.waveform);
   }
 
   draw() {
-    requestAnimationFrame(this.draw);
     const canvas = document.getElementById('oscilloscope');
     const ctx = canvas.getContext('2d');
     canvas.width = 250;
@@ -27,13 +27,17 @@ export default class Oscilloscope {
     ctx.beginPath();
     for (let i = 0; i < this.waveform.length; i++) {
       const x = i;
-      const y = (0.5 + this.waveform[i] / 2) * (canvas.height - 50);
+      const y = (0.5 + this.waveform[i] / 3.5) * canvas.height;
       if (i === 0) {
         ctx.moveTo(x, y);
       } else {
         ctx.lineTo(x, y);
       }
     }
+    ctx.strokeStyle = '#8787b6';
+    ctx.lineWidth = 3;
     ctx.stroke();
+    requestAnimationFrame(this.draw);
+    // setTimeout(this.draw, 100);
   }
 }
