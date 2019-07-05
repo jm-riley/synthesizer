@@ -1,6 +1,8 @@
 body {
   box-sizing: border-box;
   font-family: 'Raleway', sans-serif;
+  padding: 10px;
+  background-color: black;
 }
 
 .keyboard {
@@ -140,6 +142,10 @@ body {
   width: 80px;
 }
 
+.frequency-graph-container {
+  text-align: center;
+}
+
 input[type='range'] {
   -webkit-appearance: none;
   width: 100%;
@@ -170,7 +176,7 @@ input[type='range']::-webkit-slider-thumb {
   margin-top: -9.45px;
 }
 input[type='range']:focus::-webkit-slider-runnable-track {
-  background: #8787b6;
+  background: rgb(135, 135, 182);
 }
 input[type='range']::-moz-range-track {
   width: 100%;

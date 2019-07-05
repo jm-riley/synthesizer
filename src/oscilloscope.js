@@ -3,36 +3,34 @@ import context from './context';
 export default class Oscilloscope {
   constructor() {
     this.analyser = context.createAnalyser();
-    this.waveform = new Float32Array(this.analyser.frequencyBinCount);
-    this.analyser.getFloatTimeDomainData(this.waveform);
-    this.updateWaveform = this.updateWaveform.bind(this);
+    this.analyser.fftSize = 2048;
+    this.waveform = new Uint8Array(this.analyser.frequencyBinCount);
+    // this.analyser.getFloatTimeDomainData(this.waveform);
     this.draw = this.draw.bind(this);
-    this.updateWaveform();
+    this.analyser.smoothingTimeConstant = 0.85;
     this.draw();
-  }
-
-  updateWaveform() {
-    // console.log(this.waveform);
-    requestAnimationFrame(this.updateWaveform);
-    // setTimeout(this.updateWaveform, 100);
-    this.analyser.getFloatTimeDomainData(this.waveform);
+    // this.updateWaveform();
   }
 
   draw() {
     const canvas = document.getElementById('oscilloscope');
     const ctx = canvas.getContext('2d');
-    canvas.width = 250;
+    this.analyser.getByteTimeDomainData(this.waveform);
+    canvas.width = 300;
     canvas.height = 250;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
+    const sliceWidth = (canvas.width * 1.0) / this.waveform.length;
+    let x = 0;
     for (let i = 0; i < this.waveform.length; i++) {
-      const x = i;
-      const y = (0.5 + this.waveform[i] / 3.5) * canvas.height;
+      let v = this.waveform[i] / 128.0;
+      let y = (v * canvas.height) / 2;
       if (i === 0) {
         ctx.moveTo(x, y);
       } else {
         ctx.lineTo(x, y);
       }
+      x += sliceWidth;
     }
     ctx.strokeStyle = '#8787b6';
     ctx.lineWidth = 3;

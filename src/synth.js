@@ -3,6 +3,7 @@ import Oscillator from './oscillator';
 import AmpEnvelope from './amp_envelope';
 import { keymappings } from './keymappings';
 import Oscilloscope from './oscilloscope';
+import FrequencyGraph from './frequency_graph';
 
 export default class Synth {
   constructor() {
@@ -22,9 +23,10 @@ export default class Synth {
     this.gain = context.createGain();
     this.gain.connect(this.filter);
     this.gain.gain.setValueAtTime(0, context.currentTime);
-    this.oscilloscope = new Oscilloscope();
-    this.filter.connect(this.oscilloscope.analyser);
-
+    const oscilloscope = new Oscilloscope();
+    const frequencyGraph = new FrequencyGraph();
+    this.filter.connect(frequencyGraph.analyser);
+    this.filter.connect(oscilloscope.analyser);
     this.filter.connect(context.destination);
     // this.attackControl = document.getElementById('attack');
     // this.releaseControl = document.getElementById('release');
