@@ -13,7 +13,7 @@ export default class FrequencyGraph {
     const canvas = document.getElementById('frequencies');
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    canvas.width = 600;
+    canvas.width = 1100;
     canvas.height = 200;
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -22,9 +22,9 @@ export default class FrequencyGraph {
     let barHeight;
     let x = 0;
     for (let i = 0; i < this.frequencies.length; i++) {
-      barHeight = this.frequencies[i];
-      ctx.fillStyle = `rgb(135, 90, ${barHeight + 100})`;
-      ctx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight);
+      barHeight = this.frequencies[i] - 100;
+      ctx.fillStyle = `rgb(153, 247, ${barHeight + 100})`;
+      ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
       x += barWidth + 1;
     }
     requestAnimationFrame(this.draw);

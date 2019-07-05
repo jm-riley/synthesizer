@@ -32,7 +32,7 @@ export default class Oscilloscope {
       }
       x += sliceWidth;
     }
-    ctx.strokeStyle = '#8787b6';
+    ctx.strokeStyle = 'rgb(118, 80, 223)';
     ctx.lineWidth = 3;
     ctx.stroke();
     requestAnimationFrame(this.draw);

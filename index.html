@@ -5,14 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link
-      href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap"
+      href="https://fonts.googleapis.com/css?family=Raleway|Mr+Dafoe:400,700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://kit.fontawesome.com/308f5cd3cc.js"></script>
     <script src="./dist/main.js"></script>
     <link rel="stylesheet" href="./dist/style.css" />
     <title>Document</title>
   </head>
   <body>
+    <div class="header">
+      <div></div>
+      <h1>wavy</h1>
+      <a href="https://github.com/jm-riley">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
     <div class="synth-container">
       <div class="synth-controls">
         <div class="waveform-controls">
@@ -25,7 +33,7 @@
               id="sine-gain"
               min="0.0"
               max="1.0"
-              step="0.1"
+              step="0.025"
             />
           </div>
           <div class="sawtooth-control">
@@ -36,7 +44,7 @@
               id="sawtooth-gain"
               min="0.0"
               max="1.0"
-              step="0.1"
+              step="0.025"
             />
           </div>
           <div class="square-control">
@@ -47,7 +55,7 @@
               id="square-gain"
               min="0.0"
               max="1.0"
-              step="0.1"
+              step="0.025"
             />
           </div>
         </div>
@@ -66,30 +74,32 @@
             <div class="control-section-title">amplitude envelope</div>
             <div class="envelope-control">
               <span>attack</span>
-              <input id="attack" type="range" min="0" max="1" step="0.1" />
+              <input id="attack" type="range" min="0" max="1" step="0.025" />
             </div>
             <div class="envelope-control">
               <span>release</span>
-              <input id="release" type="range" min="0" max="1" step="0.1" />
+              <input id="release" type="range" min="0" max="1" step="0.025" />
             </div>
           </div>
         </div>
       </div>
 
       <div class="keyboard">
-        <div class="keys white-key" id="65">A</div>
-        <div class="keys black-key" id="87">W</div>
-        <div class="keys white-key" id="83">S</div>
-        <div class="keys black-key" id="69">E</div>
-        <div class="keys white-key" id="68">D</div>
-        <div class="keys white-key" id="70">F</div>
-        <div class="keys black-key" id="84">T</div>
-        <div class="keys white-key" id="71">G</div>
-        <div class="keys black-key" id="89">Y</div>
-        <div class="keys white-key" id="72">H</div>
-        <div class="keys black-key" id="85">U</div>
-        <div class="keys white-key" id="74">J</div>
-        <div class="keys white-key" id="75">K</div>
+        <div class="keyboard-keys">
+          <div class="keys white-key" id="65">A</div>
+          <div class="keys black-key" id="87">W</div>
+          <div class="keys white-key" id="83">S</div>
+          <div class="keys black-key" id="69">E</div>
+          <div class="keys white-key" id="68">D</div>
+          <div class="keys white-key" id="70">F</div>
+          <div class="keys black-key" id="84">T</div>
+          <div class="keys white-key" id="71">G</div>
+          <div class="keys black-key" id="89">Y</div>
+          <div class="keys white-key" id="72">H</div>
+          <div class="keys black-key" id="85">U</div>
+          <div class="keys white-key" id="74">J</div>
+          <div class="keys white-key" id="75">K</div>
+        </div>
       </div>
     </div>
     <div class="frequency-graph-container">
