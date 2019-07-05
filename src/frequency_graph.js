@@ -23,7 +23,6 @@ export default class FrequencyGraph {
     let x = 0;
     for (let i = 0; i < this.frequencies.length; i++) {
       barHeight = this.frequencies[i];
-      // ctx.fillStyle = `rgb(${barHeight + 100}, 50, 50)`;
       ctx.fillStyle = `rgb(135, 90, ${barHeight + 100})`;
       ctx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight);
       x += barWidth + 1;
