@@ -2,24 +2,26 @@
 
 > A classic three oscillator synth with filter and amplitude controls.
 
-## Technologies Used
-
-- Javascript
-- Web Audio API
+![synth](https://raw.githubusercontent.com/jm-riley/synthesizer/master/dist/synth_screenshot.png)
 
 # MVPs
 
 - Interactive keyboard with click events and keybindings
 - User can mix sine, sawtooth, and square waves together to create the desired output tone
-- Basic control over the amplitude envelope (attack, decay, sustain)
-- Asjustable filter to cutoff high or low end frequencies
+- Basic control over the amplitude envelope (attack, release)
+- Asjustable filter to cutoff low end frequencies
 
-![alt text](https://raw.githubusercontent.com/jm-riley/synthesizer/master/dist/outline.png)
+![synth outline](https://raw.githubusercontent.com/jm-riley/synthesizer/master/dist/outline.png)
 
+## Technologies Used
 
-# Development Timeline
+- Javascript
+- Web Audio API
 
-## 7-2
+## Oscilloscope and Frequency Graph
 
-- Make a basic project skeleton, and decide how to divide functionality into seperate files
-- Initialize the oscillators to be used in the project and have a simple interface working to trigger them 
+Both utilize an HTML canvas element and the Web Audio API's analyser node. Data is stored and continually updated in an array using analyser node functions, either getByteFrequencyData for the frequency graph, or getByteTimeDomainData for the oscilloscope. Both classes implement a similar draw function that iterate through the array of data and draw the relevant points to their associated canvas elements.
+
+![oscilloscope](https://raw.githubusercontent.com/jm-riley/synthesizer/master/dist/oscilloscope_gif.gif)
+
+![frequency graph](https://raw.githubusercontent.com/jm-riley/synthesizer/master/dist/frequency_gif.gif)
