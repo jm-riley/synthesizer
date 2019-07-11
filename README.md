@@ -1,6 +1,8 @@
-# Web Synthesizer
+# Wavy Web Synthesizer
 
 > A classic three oscillator synth with filter and amplitude controls.
+
+[Live](https://jm-riley.github.io/synthesizer/)
 
 ![synth](https://raw.githubusercontent.com/jm-riley/synthesizer/master/dist/synth_screenshot.png)
 
