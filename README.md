@@ -17,8 +17,14 @@
 
 ## Technologies Used
 
-- Javascript
+- Vanilla Javascript
 - Web Audio API
+
+## Web Audio API Usage
+
+The Web Audio API is a high-level JavaScript API meant to provide a more powerful way to implement and interact with audio within web applications. Much like HTML Canvas, most of the Web Audio API's functionality revolves around a context. From this context, you're able to create audio nodes and link them together in a number of ways. 
+
+There are many different types of audio nodes, one of which is the OscillatorNode. When creating a new node, you have the ability to define its' frequency and waveform type. I mapped appropriate frequencies to individual keys, and used the OscillatorNode to create three new waveforms (sine, square, and sawtooth) on each keypress. 
 
 ## Oscilloscope and Frequency Graph
 
